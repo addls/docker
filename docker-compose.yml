@@ -13,16 +13,13 @@ services:
       - "${TCP_PORT}:9505"
       - "${WEBSOCKET_PORT}:5200"
     volumes:
-      - ./config/core/.env:/var/www/backend/.env
-      - ./config/vue/.env:/var/www/frontend/.env.production
+      - ./conf/core/.env:/var/www/backend/.env
+      - ./conf/vue/.env:/var/www/frontend/.env.production
       - ./logs/core:/var/www/backend/storage/logs
       - ./logs/nginx:/var/log/nginx
       - ./logs/supervisor:/var/log/supervisor
+      - ./extensions:/var/www/backend/app/Extensions
     privileged: true
-    command:
-      - cd /var/www/backend
-      - php artisan key:generate
-      - php artisan jwt:secret -f
     depends_on:
       - timescaledb
       - rabbitmq
@@ -31,7 +28,7 @@ services:
         ipv4_address: 172.41.0.10
   timescaledb:
     image: timescale/timescaledb:latest-pg12
-    container_name: 'thingspanel-timescaledb'
+    container_name: 'thingspanel-timescaledb-${VERSION}'
     restart: 'always'
     volumes:
       - ./data/timescaledb:/var/lib/postgresql/data
@@ -40,7 +37,7 @@ services:
         ipv4_address: 172.41.0.11
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: 'thingspanel-rabbitmq'
+    container_name: 'thingspanel-rabbitmq-${VERSION}'
     restart: 'always'
     volumes:
       - ./data/rabbitmq:/var/lib/rabbitmq
