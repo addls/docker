@@ -5,6 +5,12 @@
 - 对业务人员而言，ThingsPanel不用写代码，一整套方案开箱即用。业务交付时间是传统的物联网方案的30%以下。成本也大幅度降低。
 - 可广泛应用于交通、医疗、消费、家居、消防、安防、工业、农业等各个领域。
 
+### 产品截图
+![可视化界面截图](https://raw.githubusercontent.com/universe-hsh/assets/master/images/demo.png "Thingspanel-Dashboard.png")
+
+### 功能结构图
+
+![功能结构图](https://raw.githubusercontent.com/universe-hsh/assets/master/images/structure.png "structure.png")
 
 ## 目录说明
 
