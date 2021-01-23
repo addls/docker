@@ -35,7 +35,8 @@
                                 @change="autoSwitch"
                         ></v-switch>
                     </div>
-                    <span class="text-white">{{ $t("COMMON.TEXT14") }}</span>
+                    <span class="text-white mx-2">{{ $t("COMMON.TEXT14") }}</span>
+                    <v-btn x-small color="primary" @click="loraRestart">复位Lora网络连接</v-btn>
                 </div>
             </div>
             <div class="en_bottom_list row">
@@ -48,6 +49,7 @@
                                     color="success"
                                     inset
                                     @change="switchChange($event, field.key)"
+                                    :disabled="isclick"
                             ></v-switch>
                         </div>
                     </div>
@@ -63,6 +65,7 @@
                             :thumb-size="24"
                             thumb-label="always"
                             @change="switchScroll($event, field.key)"
+                            :disabled="isclick"
                     ></v-slider>
                 </v-col>
                 <v-col cols="1">
@@ -100,6 +103,10 @@
         position: absolute;
         bottom: 0;
         right: 0;
+    }
+
+    .switch-3 {
+
     }
 
     .page-subtitle {
@@ -273,6 +280,7 @@
                 lockScroll: false,
                 timer: null,
                 timer1: null,
+                isclick:true,
             };
         },
         computed: {},
@@ -341,6 +349,19 @@
                     }
                 };
                 this.$emit('send', data);
+            },
+
+            loraRestart() {
+                var con = confirm('您确定要复位Lora网络连接吗？');
+                if(con == true){
+                    var data = {
+                        "switch": {
+                            "lora_restart": 3
+                        }
+                    };
+                    console.log('lora_restart',data);
+                    this.$emit('send', data);
+                }
             },
 
             switchScroll(val, field) {
@@ -439,6 +460,7 @@
                 if (!this.lockSwitch) {
                     this.switchFields = tempSwitchFields;
                     this.auto_switch = (this.apiData['auto_switch'] == 1 ? true : false);
+                    this.isclick = this.apiData['conditions'];
                 }
                 if (!this.lockScroll) {
                     this.scrollFields = tempScrollFields;

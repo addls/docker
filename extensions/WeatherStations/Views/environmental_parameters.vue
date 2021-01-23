@@ -11,7 +11,7 @@
                 </div>
                 <div class="addressbox divbox">
                     <img src="@/assets/images/marker.png" alt="" class="dateicon">
-                    <span>北京市海淀区清华大学东门</span>
+                    <span>{{weatherinfo.name}}</span>
                 </div>
             </div>
             <div class="clear"></div>
@@ -83,6 +83,7 @@
     import {LOGIN, LOGOUT} from "@/core/services/store/auth.module";
     import AUTH from "@/core/services/store/auth.module";
     import ApiService from "@/core/services/api.service";
+    import websocket from "@/utils/websocket";
     export default {
         name: 'XEnvironmentalParameters',
         props: {
@@ -114,6 +115,7 @@
             },
         },
         data() {
+            const self = this;
             return {
                 chart: null,
                 options: {
@@ -188,6 +190,10 @@
                 isfirst:1,
                 issecond:0,
                 isthree:0,
+                center: [121.59996, 31.197646],
+                lng: 0,
+                lat: 0,
+                loaded: false,
             };
         },
         computed: {},
@@ -258,41 +264,8 @@
              */
             initChart() {
                 console.log('环境参数');
-                console.log(this.fields);
                 console.log(this.apiData);
-                for (let field in this.fields) {
-                    console.log(field);
-                    console.log(JSON.parse(JSON.stringify(this.apiData[field].values)))
-                    this.chart.setOption({
-                        series: [{
-                            data: JSON.parse(JSON.stringify(this.apiData[field].values)),
-                            itemStyle : {
-                                normal : {
-                                    lineStyle:{
-                                        color:'#1FC96E'
-                                    }
-                                }
-                            },
-                        }]
-                    });
-                }
-            },
-            enParmeters(){
-                ApiService.post(AUTH.local_url + "/amap/environment")
-                    .then(({data}) => {
-                        /*console.log('环境参数');
-                        console.log(data);*/
-                        if (data.code == 200) {
-                            this.weatherinfo = data.data;
-                            // this.gaugeimg('chart', 'PM2.5', 0, 500, this.weatherinfo.now.aqi, 'mg/m³');
-                        } else if (data.code == 0) {
-                            this.$store
-                                .dispatch(LOGOUT)
-                                .then(() => this.$router.push({name: "login"}));
-                        } else {
-
-                        }
-                    });
+                this.weatherinfo = this.apiData;
             },
             // 当前时间
             datetime (){
@@ -335,10 +308,19 @@
         },
         created() {
             this.datetime();
+            var _this = this;
+            navigator.geolocation.getCurrentPosition(function(data){
+                console.log(data)
+                var logt = [data.coords.longitude,data.coords.latitude];
+                console.log(logt);
+                //Push message data to the server and store it in kv
+                _this.$emit('send', {
+                    logt: logt
+                });
+            });
         },
         mounted() {
             var _this = this;
-            this.enParmeters();
             setInterval(this.datetime,1000);
 
             setInterval(function(){

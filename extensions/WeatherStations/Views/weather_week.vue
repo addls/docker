@@ -23,6 +23,7 @@
     import {LOGIN, LOGOUT} from "@/core/services/store/auth.module";
     import AUTH from "@/core/services/store/auth.module";
     import ApiService from "@/core/services/api.service";
+    import websocket from "@/utils/websocket";
     export default {
         name: 'XWeatherWeek',
         props: {
@@ -54,6 +55,7 @@
             },
         },
         data() {
+            const self = this;
             return {
                 chart: null,
                 options: {
@@ -122,6 +124,10 @@
                 },
                 weatherinfo:[],
                 actnum:0,
+                center: [121.59996, 31.197646],
+                lng: 0,
+                lat: 0,
+                loaded: false,
             };
         },
         computed: {},
@@ -191,48 +197,25 @@
              * init chart
              */
             initChart() {
-                /*console.log('7天天气概况');
-                console.log(this.fields);*/
-                for (let field in this.fields) {
-                    /*console.log(field);
-                    console.log(JSON.parse(JSON.stringify(this.apiData[field].values)))*/
-                    this.chart.setOption({
-                        series: [{
-                            data: JSON.parse(JSON.stringify(this.apiData[field].values)),
-                            itemStyle : {
-                                normal : {
-                                    lineStyle:{
-                                        color:'#1FC96E'
-                                    }
-                                }
-                            },
-                        }]
-                    });
-                }
-            },
-            weatherweek(){
-                ApiService.post(AUTH.local_url + "/amap/show")
-                    .then(({data}) => {
-                        /*console.log('7天天气概况');
-                        console.log(data);*/
-                        if (data.code == 200) {
-                            this.weatherinfo = data.data.future;
-                        } else if (data.code == 0) {
-                            this.$store
-                                .dispatch(LOGOUT)
-                                .then(() => this.$router.push({name: "login"}));
-                        } else {
-
-                        }
-                    });
+                console.log('7天天气概况');
+                console.log(this.apiData);
+                this.weatherinfo = this.apiData.future;
             },
         },
-
+        created(){
+            var _this = this;
+            navigator.geolocation.getCurrentPosition(function(data){
+                console.log(data)
+                var logt = [data.coords.longitude,data.coords.latitude];
+                console.log(logt);
+                //Push message data to the server and store it in kv
+                _this.$emit('send', {
+                    logt: logt
+                });
+            });
+        },
         async mounted() {
             var _this = this;
-            // this.emitInit();
-            this.weatherweek();
-
             setInterval(function(){
                 if(_this.actnum == 0){
                     _this.actnum = _this.actnum+1;

@@ -27,7 +27,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "temperature" => '温度'
+                "temperature" => '温度',
+                'symbol' => '℃'
             ],
         ],
         //唯一标识: tahs:humidity
@@ -43,7 +44,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "humidity" => '湿度'
+                "humidity" => '湿度',
+                'symbol' => '%'
             ],
         ],
         //唯一标识: tahs:illuminance
@@ -59,7 +61,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "Illuminance" => '光照度'
+                "Illuminance" => '光照度',
+                'symbol' => 'lx'
             ],
         ],
         //唯一标识: tahs:ec
@@ -75,7 +78,7 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "ec" => '电传导'
+                "ec" => '电传导',
             ],
         ],
         //唯一标识: tahs:ph
@@ -107,7 +110,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "liquid_level" => '液位'
+                "liquid_level" => '液位',
+                'symbol' => 'cm'
             ],
         ],
         //唯一标识: tahs:liquid_level_two
@@ -123,7 +127,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "liquid_level_two" => '液位2'
+                "liquid_level_two" => '液位2',
+                'symbol' => 'cm'
             ],
         ],
         //唯一标识: tahs:liquid_level_three
@@ -139,7 +144,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "liquid_level_three" => '液位3'
+                "liquid_level_three" => '液位3',
+                'symbol' => 'cm'
             ],
         ],
         //唯一标识: tahs:liquid_level_four
@@ -155,7 +161,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "liquid_level_four" => '液位4'
+                "liquid_level_four" => '液位4',
+                'symbol' => 'cm'
             ],
         ],
         //唯一标识: tahs:liquid_level_five
@@ -171,7 +178,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "liquid_level_five" => '液位5'
+                "liquid_level_five" => '液位5',
+                'symbol' => 'cm'
             ],
         ],
         //唯一标识: tahs:water_pressure
@@ -187,7 +195,8 @@ return [
             'template' => 'x_time',
             //数据字段名
             'fields' => [
-                "water_pressure" => '水压'
+                "water_pressure" => '水压',
+                'symbol' => 'MPa'
             ],
         ],
         //唯一标识: tahs:dissolved_oxygen

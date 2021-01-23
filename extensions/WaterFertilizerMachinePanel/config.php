@@ -1,7 +1,7 @@
 <?php
 return [
     //插件类型
-    'type' => \App\Extensions\BaseClass::WIDGET_TYPE_PANEL,
+    'type' => 'device',
     //插件名
     'name' => '水肥控制板卡',
     //插件描述
@@ -134,6 +134,10 @@ return [
                 "auto_switch" => [
                     'type' => 'auto_switch',
                     'name' => '自动开关'
+                ],
+                "lora_restart" => [
+                    'type' => 'lora_restart',
+                    'name' => '水肥LORA模板复位'
                 ],
             ],
         ]

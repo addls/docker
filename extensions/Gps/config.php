@@ -1,7 +1,7 @@
 <?php
 return [
     //插件类型
-    'type' => 'device',
+    'type' => 'app',
     //插件名
     'name' => 'GPS传感器',
     //插件描述

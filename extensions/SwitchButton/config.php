@@ -1,7 +1,7 @@
 <?php
 return [
     //插件类型
-    'type' => 'button',
+    'type' => 'device',
     //插件名
     'name' => '开关',
     //插件描述

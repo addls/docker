@@ -4,6 +4,7 @@ namespace App\Extensions\EnvironmentPanel\Actions;
 
 use App\Facades\Telemetry;
 use App\Models\Assets\Device;
+use App\Models\Automation\Conditions;
 use App\Models\Telemetry\Kv;
 use App\Extensions\BaseClass;
 use Illuminate\Support\Arr;
@@ -37,7 +38,7 @@ class Normal extends BaseClass
                             //enable
                             if ($value === 1) {
                                 Telemetry::sendDataToClient($token, [
-                                    $field => '1'
+                                    $field => 1
                                 ]);
                                 //Insert data for next display
                                 Kv::insertByToken($token, [$field => $value]);
@@ -45,7 +46,7 @@ class Normal extends BaseClass
                             //disable
                             if ($value === 0) {
                                 Telemetry::sendDataToClient($token, [
-                                    $field => '0'
+                                    $field => 0
                                 ]);
                                 //Insert data for next display
                                 Kv::insertByToken($token, [$field => $value]);
@@ -57,6 +58,16 @@ class Normal extends BaseClass
                             ]);
                             //Insert data for next display
                             Kv::insertByToken($token, [$field => $value]);
+                            break;
+                        case 'lora_restart':
+                            //enable
+                            if ($value === 3) {
+                                Telemetry::sendDataToClient($token, [
+                                    $field => 3
+                                ]);
+                                //Insert data for next display
+                                Kv::insertByToken($token, [$field => $value]);
+                            }
                             break;
                         default:
                             break;
@@ -82,7 +93,9 @@ class Normal extends BaseClass
 
         //auto switch
         $data['auto_switch'] = Kv::getLatestValue($device_id[0], 'auto_switch', 0);
-
+        //The strategy is to ban the empty-handed movement
+        $conditionData = Conditions::where(['status' => 1])->get();
+        $data['conditions'] = count($conditionData) == 0 ? false : true;
         return $data;
     }
 }

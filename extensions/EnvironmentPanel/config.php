@@ -1,7 +1,7 @@
 <?php
 return [
     //插件类型
-    'type' => \App\Extensions\BaseClass::WIDGET_TYPE_PANEL,
+    'type' => 'device',
     //插件名
     'name' => '环境控制板卡',
     //插件描述
@@ -40,10 +40,12 @@ return [
                 "lux" => [
                     'name' => '光照度',
                     'type' => \App\Extensions\BaseClass::FIELD_TYPE_CHART,
+                    'symbol' => 'lx'
                 ],
                 "c02" => [
                     'name' => '二氧化碳',
                     'type' => \App\Extensions\BaseClass::FIELD_TYPE_CHART,
+                    'symbol' => 'ppm'
                 ],
                 "sw_m" => [
                     'name' => '主控制状态',
@@ -172,7 +174,63 @@ return [
                 "jcq_fsl7" => [
                     'name' => '风水帘7',
                     'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
-                ]
+                ],
+                "jcq_by1" => [
+                    'name' => '备用1',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by2" => [
+                    'name' => '备用2',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by3" => [
+                    'name' => '备用3',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by4" => [
+                    'name' => '备用4',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by5" => [
+                    'name' => '备用5',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by6" => [
+                    'name' => '备用6',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by7" => [
+                    'name' => '备用7',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by8" => [
+                    'name' => '备用8',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by9" => [
+                    'name' => '备用9',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by10" => [
+                    'name' => '备用10',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by11" => [
+                    'name' => '备用11',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by12" => [
+                    'name' => '备用12',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "jcq_by13" => [
+                    'name' => '备用13',
+                    'type' => \App\Extensions\BaseClass::FIELD_TYPE_SWITCH
+                ],
+                "lora_restart" => [
+                    'type' => 'lora_restart',
+                    'name' => '环境LORA模板复位'
+                ],
             ],
         ]
     ]

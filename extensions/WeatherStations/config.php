@@ -1,7 +1,7 @@
 <?php
 return [
     //插件类型
-    'type' => 'device',
+    'type' => 'app',
     //插件名
     'name' => '气象站插件',
     //插件描述

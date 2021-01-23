@@ -13,6 +13,7 @@ abstract class BaseClass implements BaseInterface
     const FIELD_TYPE_SCROLL = 3; //scroll
     const FIELD_TYPE_STATUS = 4; //control status
     const FIELD_TYPE_LIQUID = 5; //Liquid level status
+    const FIELD_TYPE_ADDRESS = 6; //ADDRESS
 
     /**
      * main function
@@ -25,7 +26,7 @@ abstract class BaseClass implements BaseInterface
     public function main(array $device_id, array $data, array $fields, bool $initial): array
     {
         try {
-            $output = Kv::getTelemetryData($device_id, $data['config']['latestTime'], $data['config']['startTs'], $data['config']['endTs'], $data['config']['operator'], $fields);
+            $output = Kv::getTelemetryData($device_id, $data['config']['latestTime'], intval($data['config']['startTs']), intval($data['config']['endTs']), $data['config']['operator'], $fields);
         } catch (\Exception $e) {
             Log::error('getTelemetryData', [
                 $e->getCode(),
