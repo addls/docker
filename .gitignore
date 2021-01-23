@@ -1,3 +1,5 @@
 .idea
 logs
 data/rabbitmq
+entrypoint.sh
+install.sql
