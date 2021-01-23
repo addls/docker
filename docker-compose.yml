@@ -20,6 +20,9 @@ services:
       - ./logs/supervisor:/var/log/supervisor
       - ./extensions:/var/www/backend/app/Extensions
     privileged: true
+    environment:
+      - ENV_MODE=${ENV_MODE}
+#    entrypoint: /entrypoint.sh
     depends_on:
       - timescaledb
       - rabbitmq

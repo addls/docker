@@ -34,9 +34,9 @@
 
 进入到项目根目录直接执行以下命令即可启动
 
-```bash
-docker-compose up -d
-```
+生产模式: `docker-compose up -d`
+
+开发模式: `docker-compose --env-file .env.dev up`
 
 ## 如何进入容器
 
@@ -51,3 +51,5 @@ docker exec -it thingspanel-xxx bash
 
 ## 前台访问
 `http://127.0.0.1`
+
+默认登录账号：admin@protonmail.com 密码：admin@protonmail.com
