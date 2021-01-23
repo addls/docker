@@ -39,7 +39,7 @@ services:
       thingspanel-network:
         ipv4_address: 172.41.0.11
   rabbitmq:
-    image: rabbitmq:3-management
+    image: thingspanel/rabbitmq:3
     container_name: 'thingspanel-rabbitmq-${VERSION}'
     restart: 'always'
     volumes:
