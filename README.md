@@ -53,3 +53,20 @@ docker exec -it thingspanel-xxx bash
 `http://127.0.0.1`
 
 默认登录账号：admin@protonmail.com 密码：admin@protonmail.com
+
+## 数据推送
+MQTT Port: 1883\
+TCP Port: 9505
+
+示例格式：
+```json
+{
+    "token":"设备编号", //设备唯一标识符, 从业务后台生成
+    "ts":1451649600512, //可选，单位毫秒
+    "values":{
+        "temperature": "30", //温度
+        "humidity": "85" //湿度
+        ... 更多参数
+    }
+}
+```
